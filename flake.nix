@@ -18,9 +18,13 @@
     let
       # The one username line to change if this isn't your machine.
       # bootstrap.sh offers to rewrite this for you if your macOS username differs.
-      user = "kunchen";
+      user = "burak";
+
+      # Linux target platform (change to "aarch64-linux" for ARM).
+      linuxSystem = "x86_64-linux";
     in
     {
+      # --- macOS (unchanged from upstream) ---
       darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit user; };
         modules = [
@@ -34,6 +38,14 @@
             home-manager.users.${user} = import ./home.nix;
           }
         ];
+      };
+
+      # --- Linux (standalone home-manager, no nix-darwin needed) ---
+      homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration {
+        inherit (nixpkgs) lib;
+        pkgs = nixpkgs.legacyPackages.${linuxSystem};
+        extraSpecialArgs = { inherit user; };
+        modules = [ ./home.nix ];
       };
     };
 }
