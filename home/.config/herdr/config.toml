@@ -1,16 +1,22 @@
 [keys]
-prefix = "ctrl+b"
+# Prefix set to ctrl+s to match tmux muscle memory (ctrl+s was my tmux prefix).
+# herdr's default was ctrl+b; switching the prefix renames every "prefix+x" binding
+# below to ctrl+s+x automatically.
+prefix = "ctrl+s"
 focus_pane_left  = "prefix+h"
 focus_pane_down  = "prefix+j"
 focus_pane_up    = "prefix+k"
 focus_pane_right = "prefix+l"
-split_horizontal = "prefix+double_quote"
-split_vertical    = "prefix+percent"
-new_tab   = "prefix+c"
-close_tab = "prefix+ampersand"
-workspace_picker = "prefix+w"
-goto             = "prefix+g"
-copy_mode  = "prefix+y"  # herdr's copy-mode entry key; copy-mode's own internal keys (v/space select, y/Enter copy, q/Esc cancel) aren't configurable
+split_horizontal = "prefix+double_quote"   # ctrl+s "
+split_vertical   = "prefix+percent"        # ctrl+s %
+new_tab          = "prefix+c"               # ctrl+s c
+close_tab        = "prefix+ampersand"       # ctrl+s &
+workspace_picker = "prefix+w"               # ctrl+s w (opens the workspace navigator)
+goto             = "prefix+g"               # ctrl+s g (session navigator)
+copy_mode        = "prefix+["               # ctrl+s [ — tmux muscle memory. herdr's
+                                            #   copy-mode internal keys (v/space select,
+                                            #   y/Enter copy, q/Esc cancel) aren't
+                                            #   configurable.
 
 [ui]
 # Agents panel order: explicit choice of "spaces" (grouped by space, the default) over "priority".
